@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+.MuiTableHead-root {
+  background-color: #e3f2fd !important;
+}
+
+.MuiTableHead-root .MuiTableCell-head {
+  color: #1a202c !important;
+  background-color: #e3f2fd !important;
+}
