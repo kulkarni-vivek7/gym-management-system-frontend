@@ -1,4 +1,3 @@
-
 import axios, { isAxiosError } from 'axios';
 import { z } from 'zod';
 import { decryptJWT } from '../../cryptoUtils';
@@ -40,6 +39,8 @@ export async function updateMembershipAction(
 ): Promise<UpdateMembershipFormState> {
     const jwt = decryptJWT(encryptedJwt);
 
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL as string;
+
     const id = formData.get('id') as string;
     const name = formData.get('name') as string;
     const duration = formData.get('duration') as string;
@@ -80,7 +81,7 @@ export async function updateMembershipAction(
         };
 
         const response = await axios.put(
-            'http://localhost:8080/user/updateMembership',
+            `${BACKEND_URL}user/updateMembership`,
             membershipData,
             {
                 headers: {

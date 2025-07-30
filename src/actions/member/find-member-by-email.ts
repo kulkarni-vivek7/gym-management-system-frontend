@@ -4,10 +4,13 @@ import type { Member } from '../../types';
 
 export async function findMemberByEmail(email: string, encryptedJwt: string): Promise<Member> {
     const jwt = decryptJWT(encryptedJwt);
+
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL as string;
+
     if (!jwt) {
         throw new Error('Invalid JWT');
     }
-    const url = `http://localhost:8080/member/details`;
+    const url = `${BACKEND_URL}member/details`;
     const response = await axios.get(url, {
         headers: {
             'Authorization': `Bearer ${jwt}`

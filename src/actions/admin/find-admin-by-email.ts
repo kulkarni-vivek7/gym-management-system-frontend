@@ -4,10 +4,13 @@ import type { Admin } from '../../types';
 
 export async function findAdminByEmail(email: string, encryptedJwt: string): Promise<Admin> {
     const jwt = decryptJWT(encryptedJwt);
+
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL as string;
+
     if (!jwt) {
         throw new Error('Invalid JWT');
     }
-    const url = `http://localhost:8080/user/getAdminDetails`;
+    const url = `${BACKEND_URL}user/getAdminDetails`;
     const response = await axios.get(url, {
         headers: {
             'Authorization': `Bearer ${jwt}`

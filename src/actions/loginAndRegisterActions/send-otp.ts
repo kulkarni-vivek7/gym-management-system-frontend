@@ -16,6 +16,8 @@ export async function sendOtpAction(
     email: string
 ): Promise<SendOtpFormState> {
 
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL as string;
+
     const validation = sendOtpSchema.safeParse(email);
 
     if (email.length === 0) {
@@ -29,7 +31,7 @@ export async function sendOtpAction(
 
     try {
         const response = await axios.get(
-            `http://localhost:8080/api/auth/send-otp-email`, {
+            `${BACKEND_URL}api/auth/send-otp-email`, {
             params: {
                 email: email
             }

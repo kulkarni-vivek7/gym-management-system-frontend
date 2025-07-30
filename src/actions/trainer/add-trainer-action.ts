@@ -35,6 +35,8 @@ export async function addTrainerAction(
 ): Promise<AddTrainerFormState> {
     const jwt = decryptJWT(encryptedJwt);
 
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL as string;
+
     const name = formData.get('name') as string;
     const age = formData.get('age') as string;
     const phno = formData.get('phno') as string;
@@ -82,7 +84,7 @@ export async function addTrainerAction(
         };
 
         const response = await axios.post(
-            `http://localhost:8080/user/addTrainer`,
+            `${BACKEND_URL}user/addTrainer`,
             trainerData,
             {
                 headers: {

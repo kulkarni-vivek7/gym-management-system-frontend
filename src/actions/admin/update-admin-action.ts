@@ -41,6 +41,9 @@ export async function updateAdminAction(
     encryptedJwt: string
 ): Promise<UpdateAdminFormState> {
     // Validate using Zod
+
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL as string;
+
     const validation = updateAdminSchema.safeParse(admin);
     if (!validation.success) {
         const fieldErrors = validation.error.flatten().fieldErrors;
@@ -68,7 +71,7 @@ export async function updateAdminAction(
 
     try {
         const response = await axios.put(
-            `http://localhost:8080/user`,
+            `${BACKEND_URL}user`,
             admin,
             {
                 headers: {

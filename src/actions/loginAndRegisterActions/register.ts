@@ -42,6 +42,8 @@ export async function registerAction(
     const phno = formData.get('phno') as string;
     const gender = formData.get('gender') as string;
 
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL as string;
+
     // Validate using Zod
     const validation = registerSchema.safeParse({
         name,
@@ -76,7 +78,7 @@ export async function registerAction(
             gender
         }
         
-        const response = await axios.post('http://localhost:8080/api/auth/register', adminData);
+        const response = await axios.post(`${BACKEND_URL}api/auth/register`, adminData);
 
         if (response.status === 201) {
             return { success: true, errors: {} };

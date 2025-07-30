@@ -34,6 +34,9 @@ export async function addMembershipAction(
     formData: FormData
 ): Promise<AddMembershipFormState> {
     const jwt = decryptJWT(encryptedJwt); // Decrypt the JWT
+
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL as string;
+
     const name = formData.get('name') as string;
     const duration = formData.get('duration') as string;
     const price = formData.get('price') as string;
@@ -66,7 +69,7 @@ export async function addMembershipAction(
         };
 
         const response = await axios.post(
-            'http://localhost:8080/user/addMembership',
+            `${BACKEND_URL}user/addMembership`,
             membershipData,
             {
                 headers: {

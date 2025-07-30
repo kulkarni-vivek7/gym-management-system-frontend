@@ -43,6 +43,8 @@ export async function updateMemberAction(
 ): Promise<UpdateMemberFormState> {
     const jwt = decryptJWT(encryptedJwt);
 
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL as string;
+
     const name = formData.get('name') as string;
     const age = formData.get('age') as string;
     const phno = formData.get('phno') as string;
@@ -103,7 +105,7 @@ export async function updateMemberAction(
         };
 
         const response = await axios.put(
-            `http://localhost:8080/user/updateMember`,
+            `${BACKEND_URL}user/updateMember`,
             memberData,
             {
                 headers: {

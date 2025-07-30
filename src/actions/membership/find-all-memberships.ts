@@ -8,11 +8,15 @@ type FetchMembershipsResponse = {
     totalMemberships: number;
 }
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL as string;
+
 export const findAllActiveMemberships = async (encryptedJWT: string, page: number, limit: number): Promise<FetchMembershipsResponse> => {
+
+
     try {
         const jwt = decryptJWT(encryptedJWT);
 
-        const response = await axios.get('http://localhost:8080/user/viewAllMemberships', {
+        const response = await axios.get(`${BACKEND_URL}user/viewAllMemberships`, {
             headers: {
                 Authorization: `Bearer ${jwt}`,
             },
@@ -44,7 +48,7 @@ export const findAllInactiveMemberships = async (encryptedJWT: string, page: num
     try {
         const jwt = decryptJWT(encryptedJWT);
 
-        const response = await axios.get('http://localhost:8080/user/viewAllMemberships', {
+        const response = await axios.get(`${BACKEND_URL}user/viewAllMemberships`, {
             headers: {
                 Authorization: `Bearer ${jwt}`,
             },
@@ -76,7 +80,7 @@ export const searchMemberships = async (encryptedJWT: string, searchParam: strin
     try {
         const jwt = decryptJWT(encryptedJWT);
 
-        const response = await axios.get('http://localhost:8080/user/viewAllMemberships', {
+        const response = await axios.get(`${BACKEND_URL}user/viewAllMemberships`, {
             headers: {
                 Authorization: `Bearer ${jwt}`,
             },

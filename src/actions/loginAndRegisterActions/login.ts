@@ -28,6 +28,8 @@ export async function loginAction(
     const email = formData.get('email') as string;
     const otp = formData.get('otp') as string;
 
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL as string;
+
     // Validate using Zod
     const validation = loginSchema.safeParse({
         email,
@@ -47,7 +49,7 @@ export async function loginAction(
 
     try {
         const loginData = { email, otp };
-        const response = await axios.post('http://localhost:8080/api/auth/login', loginData);
+        const response = await axios.post(`${BACKEND_URL}api/auth/login`, loginData);
 
         if (response.status === 200 && response.data) {
             return {

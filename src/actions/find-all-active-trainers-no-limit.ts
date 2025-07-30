@@ -6,10 +6,13 @@ export const findAllActiveTrainersByMembershipName = async (
     encryptedJWT: string,
     membershipName: string
 ): Promise<Trainer[]> => {
+
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL as string;
+
     try {
         const jwt = decryptJWT(encryptedJWT);
         const response = await axios.get(
-            `http://localhost:8080/user/getAllActiveTrainerByMembershipId`,
+            `${BACKEND_URL}user/getAllActiveTrainerByMembershipId`,
             {
                 headers: {
                     Authorization: `Bearer ${jwt}`,

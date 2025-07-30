@@ -34,6 +34,8 @@ export async function addMemberAction(
 ): Promise<AddMemberFormState> {
     const jwt = decryptJWT(encryptedJwt);
 
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL as string;
+
     const name = formData.get('name') as string;
     const age = formData.get('age') as string;
     const phno = formData.get('phno') as string;
@@ -79,7 +81,7 @@ export async function addMemberAction(
         };
 
         const response = await axios.post(
-            `http://localhost:8080/user/addMember`,
+            `${BACKEND_URL}user/addMember`,
             memberData,
             {
                 headers: {

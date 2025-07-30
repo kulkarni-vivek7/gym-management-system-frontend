@@ -6,12 +6,14 @@ type FetchTrainersResponse = {
     listOfTrainers: Trainer[];
     totalTrainers: number;
 }
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL as string;
 
 export const findAllActiveTrainers = async (encryptedJWT: string, page: number, limit: number): Promise<FetchTrainersResponse> => {
+
     try {
         const jwt = decryptJWT(encryptedJWT);
 
-        const response = await axios.get('http://localhost:8080/user/viewAllTrainers', {
+        const response = await axios.get(`${BACKEND_URL}user/viewAllTrainers`, {
             headers: {
                 Authorization: `Bearer ${jwt}`,
             },
@@ -43,7 +45,7 @@ export const findAllInactiveTrainers = async (encryptedJWT: string, page: number
     try {
         const jwt = decryptJWT(encryptedJWT);
 
-        const response = await axios.get('http://localhost:8080/user/viewAllTrainers', {
+        const response = await axios.get(`${BACKEND_URL}user/viewAllTrainers`, {
             headers: {
                 Authorization: `Bearer ${jwt}`,
             },
@@ -75,7 +77,7 @@ export const searchTrainers = async (encryptedJWT: string, searchParam: string, 
     try {
         const jwt = decryptJWT(encryptedJWT);
 
-        const response = await axios.get('http://localhost:8080/user/viewAllTrainers', {
+        const response = await axios.get(`${BACKEND_URL}user/viewAllTrainers`, {
             headers: {
                 Authorization: `Bearer ${jwt}`,
             },
@@ -120,7 +122,7 @@ export const getAllRegisteredMembers = async (
     if (!jwt) {
       throw new Error('Invalid JWT');
     }
-    const response = await axios.get('http://localhost:8080/trainer/getAllRegisteredMembers', {
+    const response = await axios.get(`${BACKEND_URL}trainer/getAllRegisteredMembers`, {
       headers: {
         Authorization: `Bearer ${jwt}`,
       },

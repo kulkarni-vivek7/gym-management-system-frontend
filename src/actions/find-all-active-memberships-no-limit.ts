@@ -3,10 +3,13 @@ import type { Membership } from '../types';
 import axios from 'axios';
 
 export const findAllActiveMembershipsNoLimit = async (encryptedJWT: string): Promise<Membership[]> => {
+
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL as string;
+
     try {
         const jwt = decryptJWT(encryptedJWT);
 
-        const response = await axios.get('http://localhost:8080/user/getAllActiveMembershipsNoLimit', {
+        const response = await axios.get(`${BACKEND_URL}user/getAllActiveMembershipsNoLimit`, {
             headers: {
                 Authorization: `Bearer ${jwt}`,
             },
