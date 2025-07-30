@@ -10,6 +10,8 @@ export async function findMemberByEmail(email: string, encryptedJwt: string): Pr
     if (!jwt) {
         throw new Error('Invalid JWT');
     }
+
+    // bug fixed Here: Use BACKEND_URL instead of hardcoded URL
     const url = `${BACKEND_URL}member/details`;
     const response = await axios.get(url, {
         headers: {

@@ -31,6 +31,7 @@ export async function sendOtpAction(
 
     try {
         const response = await axios.get(
+            // bug fixed Here: Use BACKEND_URL instead of hardcoded URL
             `${BACKEND_URL}api/auth/send-otp-email`, {
             params: {
                 email: email

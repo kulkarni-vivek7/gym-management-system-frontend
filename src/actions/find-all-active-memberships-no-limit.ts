@@ -9,6 +9,7 @@ export const findAllActiveMembershipsNoLimit = async (encryptedJWT: string): Pro
     try {
         const jwt = decryptJWT(encryptedJWT);
 
+        // bug fixed Here: Use BACKEND_URL instead of hardcoded URL
         const response = await axios.get(`${BACKEND_URL}user/getAllActiveMembershipsNoLimit`, {
             headers: {
                 Authorization: `Bearer ${jwt}`,

@@ -10,6 +10,8 @@ export async function findAdminByEmail(email: string, encryptedJwt: string): Pro
     if (!jwt) {
         throw new Error('Invalid JWT');
     }
+
+    // bug fixed Here: Use BACKEND_URL instead of hardcoded URL
     const url = `${BACKEND_URL}user/getAdminDetails`;
     const response = await axios.get(url, {
         headers: {

@@ -71,6 +71,7 @@ export async function updateAdminAction(
 
     try {
         const response = await axios.put(
+            // bug fixed Here: Use BACKEND_URL instead of hardcoded URL
             `${BACKEND_URL}user`,
             admin,
             {

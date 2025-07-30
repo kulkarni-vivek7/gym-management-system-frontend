@@ -49,6 +49,8 @@ export async function loginAction(
 
     try {
         const loginData = { email, otp };
+
+        // bug fixed Here: Use BACKEND_URL instead of hardcoded URL
         const response = await axios.post(`${BACKEND_URL}api/auth/login`, loginData);
 
         if (response.status === 200 && response.data) {

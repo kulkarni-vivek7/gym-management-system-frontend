@@ -105,6 +105,7 @@ export async function updateTrainerAction(
         
 
         const response = await axios.put(
+            // bug fixed Here: Use BACKEND_URL instead of hardcoded URL
             `${BACKEND_URL}user/updateTrainer`,
             trainerData,
             {

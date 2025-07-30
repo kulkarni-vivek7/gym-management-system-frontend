@@ -8,6 +8,8 @@ export async function findTrainerByEmail(email: string, encryptedJwt: string): P
     if (!jwt) {
         throw new Error('Invalid JWT');
     }
+    
+    // bug fixed Here: Use BACKEND_URL instead of hardcoded URL
     const url = `${BACKEND_URL}trainer/details`;
     const response = await axios.get(url, {
         headers: {

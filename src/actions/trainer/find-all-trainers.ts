@@ -13,6 +13,7 @@ export const findAllActiveTrainers = async (encryptedJWT: string, page: number, 
     try {
         const jwt = decryptJWT(encryptedJWT);
 
+        // bug fixed Here: Use BACKEND_URL instead of hardcoded URL
         const response = await axios.get(`${BACKEND_URL}user/viewAllTrainers`, {
             headers: {
                 Authorization: `Bearer ${jwt}`,
@@ -45,6 +46,7 @@ export const findAllInactiveTrainers = async (encryptedJWT: string, page: number
     try {
         const jwt = decryptJWT(encryptedJWT);
 
+        // bug fixed Here: Use BACKEND_URL instead of hardcoded URL
         const response = await axios.get(`${BACKEND_URL}user/viewAllTrainers`, {
             headers: {
                 Authorization: `Bearer ${jwt}`,
@@ -77,6 +79,7 @@ export const searchTrainers = async (encryptedJWT: string, searchParam: string, 
     try {
         const jwt = decryptJWT(encryptedJWT);
 
+        // bug fixed Here: Use BACKEND_URL instead of hardcoded URL
         const response = await axios.get(`${BACKEND_URL}user/viewAllTrainers`, {
             headers: {
                 Authorization: `Bearer ${jwt}`,
@@ -122,6 +125,8 @@ export const getAllRegisteredMembers = async (
     if (!jwt) {
       throw new Error('Invalid JWT');
     }
+
+    // bug fixed Here: Use BACKEND_URL instead of hardcoded URL
     const response = await axios.get(`${BACKEND_URL}trainer/getAllRegisteredMembers`, {
       headers: {
         Authorization: `Bearer ${jwt}`,

@@ -16,6 +16,7 @@ export const findAllActiveMemberships = async (encryptedJWT: string, page: numbe
     try {
         const jwt = decryptJWT(encryptedJWT);
 
+        // bug fixed Here: Use BACKEND_URL instead of hardcoded URL
         const response = await axios.get(`${BACKEND_URL}user/viewAllMemberships`, {
             headers: {
                 Authorization: `Bearer ${jwt}`,
@@ -48,6 +49,7 @@ export const findAllInactiveMemberships = async (encryptedJWT: string, page: num
     try {
         const jwt = decryptJWT(encryptedJWT);
 
+        // bug fixed Here: Use BACKEND_URL instead of hardcoded URL
         const response = await axios.get(`${BACKEND_URL}user/viewAllMemberships`, {
             headers: {
                 Authorization: `Bearer ${jwt}`,
@@ -80,6 +82,7 @@ export const searchMemberships = async (encryptedJWT: string, searchParam: strin
     try {
         const jwt = decryptJWT(encryptedJWT);
 
+        // bug fixed Here: Use BACKEND_URL instead of hardcoded URL
         const response = await axios.get(`${BACKEND_URL}user/viewAllMemberships`, {
             headers: {
                 Authorization: `Bearer ${jwt}`,

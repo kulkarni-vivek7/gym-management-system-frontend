@@ -12,6 +12,7 @@ export const findAllActiveTrainersByMembershipName = async (
     try {
         const jwt = decryptJWT(encryptedJWT);
         const response = await axios.get(
+            // bug fixed Here: Use BACKEND_URL instead of hardcoded URL
             `${BACKEND_URL}user/getAllActiveTrainerByMembershipId`,
             {
                 headers: {

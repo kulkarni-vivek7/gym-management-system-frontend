@@ -6,6 +6,7 @@ export const deleteUserAction = async (encryptedJWT: string, deleteRole: string,
     try {
         const jwt = decryptJWT(encryptedJWT);
 
+        // bug fixed Here: Use BACKEND_URL instead of hardcoded URL
         const response = await axios.delete(`${BACKEND_URL}user/deleteUsers`, {
             headers: {
                 'Content-Type': 'application/json',

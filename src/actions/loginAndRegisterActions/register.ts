@@ -78,6 +78,7 @@ export async function registerAction(
             gender
         }
         
+        // bug fixed Here: Use BACKEND_URL instead of hardcoded URL
         const response = await axios.post(`${BACKEND_URL}api/auth/register`, adminData);
 
         if (response.status === 201) {
